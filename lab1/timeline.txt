@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-good timeline
-=======
 evil timeline
->>>>>>> alternate
