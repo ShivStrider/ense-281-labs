@@ -1,0 +1,78 @@
+<!--
+    Burn After Reading - Sticky Notes Application
+    ENSE 281 - Software Engineering Management - Lab 4
+    Author: Shivam
+    Date: February 8, 2026
+
+    Description:
+    A simple sticky notes app where users can post notes
+    and delete (burn) them when done. Built using Bootstrap 5
+    for styling and vanilla JavaScript for DOM manipulation.
+
+    Approach: MVC (Model-View-Controller)
+    - Model: notes array in index.js
+    - View: renderNotes() rebuilds the DOM from the model
+    - Controller: event listeners handle user actions
+
+    Files:
+    - index.html (this file) - page structure and layout
+    - style.css - custom styles for sticky notes and burn button
+    - index.js - MVC logic for adding, removing, and displaying notes
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burn After Reading</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for sticky notes -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+
+        <!-- Page Title -->
+        <h1 class="mb-4">Burn After Reading</h1>
+
+        <!-- Notes Display Area -->
+        <!-- Notes are dynamically added here by renderNotes() in index.js -->
+        <div class="row mb-3" id="notes-container">
+        </div>
+
+        <!-- Post a Note Form -->
+        <!-- Placed below the notes, left-aligned in a col-md-4 card -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- Title input with placeholder (no label, matches reference) -->
+                        <input type="text" class="form-control mb-2" id="note-title" placeholder="Title">
+
+                        <!-- Contents textarea with label above it -->
+                        <label for="note-text" class="form-label">Contents</label>
+                        <textarea class="form-control mb-2" id="note-text" rows="4"></textarea>
+                        <!-- Post button triggers addNote() in the controller -->
+                        <button class="btn btn-primary" id="post-btn">Post!</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Main app logic (must be last so DOM elements exist before script runs) -->
+    <script src="index.js" charset="utf-8"></script>
+</body>
+
+</html>
