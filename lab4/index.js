@@ -1,8 +1,8 @@
-// ============================================================
+
 // Burn After Reading - Main Application Logic
 // ENSE 281 - Software Engineering Management - Lab 4
 // Author: Shivam
-// Date: February 8, 2026
+// Date: February 8,2026
 //
 // Description:
 // Implements the sticky notes app using the MVC pattern.
@@ -11,19 +11,20 @@
 // - Controller: listens for button clicks and coordinates model + view
 //
 // Extra Credit:
-// Notes cycle through 5 rotating colors based on their position index.
-// Because the view re-renders from scratch each time, deleting a note
-// does not shift the colors of the remaining notes unexpectedly.
+// Notes cycle through 5 rotating colors. Each note's color is
+// assigned at creation time and stored in the model, so deleting
+// a note does not change the colors of the remaining notes.
 //
 // Key Concepts Used:
 // - DOM manipulation (createElement, appendChild, innerHTML)
 // - Event listeners with addEventListener
-// - The bind() method to pass note ID into the burn button callback
+// - Closures to capture note ID for each burn button callback
 // - Array filter() for removing notes from the model
 // - Template literals are avoided to keep things simple for now
 
 
-// MODEL 
+
+// MODEL
 // The model holds all application data (the notes array)
 // and provides functions to modify that data.
 
@@ -32,6 +33,9 @@ let notes = [];
 
 // Counter for generating unique IDs (increments with each new note)
 let nextId = 1;
+
+// Tracks which color to assign next (cycles 0-4)
+let colorIndex = 0;
 
 // Five rotating colors for sticky notes (from the lab spec)
 const NOTE_COLORS = [
@@ -43,16 +47,20 @@ const NOTE_COLORS = [
 ];
 
 // Adds a new note object to the notes array.
-// Each note has a unique id, a title, and text content.
+// Each note has a unique id, a title, text content, and a color.
+// The color is assigned at creation time so it stays the same
+// even after other notes are deleted.
 // @param {string} title - the note's title
 // @param {string} text - the note's body content
 function addNote(title, text) {
     let note = {
         id: nextId,
         title: title,
-        text: text
+        text: text,
+        color: NOTE_COLORS[colorIndex % NOTE_COLORS.length]
     };
     nextId++;
+    colorIndex++;
     notes.push(note);
 }
 
@@ -66,7 +74,7 @@ function removeNote(id) {
 }
 
 
-//  VIEW 
+// VIEW
 // The view is responsible for displaying the model's data in the DOM.
 // On every change, we clear the entire view and rebuild it from the model.
 // This keeps the view in sync with the model at all times.
@@ -87,8 +95,8 @@ function clearView() {
 // 4. Attach a burn button with an event listener to delete that note
 //
 // Color assignment:
-// Colors rotate by position index (i % 5), so the first note
-// is always pink, the second is hot pink, the third is cyan, etc.
+// Each note's color is stored in the model at creation time,
+// so deleting other notes does not change a note's color.
 function renderNotes() {
     // Step 1: clear existing notes from the page
     clearView();
@@ -99,8 +107,8 @@ function renderNotes() {
     for (let i = 0; i < notes.length; i++) {
         let note = notes[i];
 
-        // Pick the color based on position (rotating through 5 colors)
-        let color = NOTE_COLORS[i % NOTE_COLORS.length];
+        // Use the color stored in the note (assigned at creation time)
+        let color = note.color;
 
         // Create the Bootstrap column wrapper (3 notes per row on medium+ screens)
         let col = document.createElement("div");
@@ -130,13 +138,13 @@ function renderNotes() {
         burnBtn.classList.add("burn-btn");
         burnBtn.innerText = "\uD83D\uDD25"; // fire emoji
 
-        // Attach click listener to the burn button
-        // bind() passes the note's ID as "this" inside the callback
-        // so we know which note to remove from the model
+        // Capture the note ID in a closure variable so the callback
+        // can access it later when the button is clicked
+        let noteId = note.id;
         burnBtn.addEventListener("click", function () {
-            removeNote(this);   // "this" is the note ID thanks to bind()
+            removeNote(noteId); // closure keeps the correct ID for each button
             renderNotes();      // re-render the view after removing
-        }.bind(note.id));
+        });
 
         // Assemble the card: title -> text -> burn button -> card body -> card -> column
         cardBody.appendChild(cardTitle);
@@ -151,7 +159,7 @@ function renderNotes() {
 }
 
 
-//  CONTROLLER 
+// CONTROLLER 
 // The controller connects user actions (button clicks) to
 // the model (data) and view (display). It reads form input,
 // validates it, updates the model, and triggers the view to re-render.
