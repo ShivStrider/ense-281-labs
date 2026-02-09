@@ -1,0 +1,72 @@
+/*
+ * Burn After Reading - Custom Styles
+ * ENSE 281 - Software Engineering Management - Lab 4
+ * Author: Shivam
+ * Date: February 8, 2026
+ *
+ * Description:
+ * Custom styles for the sticky notes app.
+ * Only includes styles that Bootstrap does not provide.
+ * Organized by: Base Styles, Sticky Note Card, Burn Button.
+ */
+
+/*  Base Styles  */
+
+/* Light gray background to match the reference design */
+body {
+    background-color: #e0e0e0;
+}
+
+/* Bold page title */
+h1 {
+    font-weight: bold;
+}
+
+/*  Sticky Note Card  */
+
+/* Remove default card border, add subtle shadow for depth */
+.sticky-note {
+    border: none;
+    border-radius: 6px;
+    min-height: 120px;
+}
+
+/* Compact padding inside the note card */
+.sticky-note .card-body {
+    padding: 12px;
+}
+
+/* Bold note title */
+.sticky-note .card-title {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+/* Slightly smaller note text with spacing below */
+.sticky-note .card-text {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+/*  Burn Button  */
+
+/* Small square button with fire emoji, styled to look like the reference */
+.burn-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(200, 50, 50, 0.25);
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Darken on hover for visual feedback */
+.burn-btn:hover {
+    background-color: rgba(200, 50, 50, 0.45);
+}

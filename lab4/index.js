@@ -2,7 +2,7 @@
 // Burn After Reading - Main Application Logic
 // ENSE 281 - Software Engineering Management - Lab 4
 // Author: Shivam
-// Date: February 2026
+// Date: February 8, 2026
 //
 // Description:
 // Implements the sticky notes app using the MVC pattern.
