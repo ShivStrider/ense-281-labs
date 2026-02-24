@@ -1,0 +1,80 @@
+<!--
+    Note-Vote Application - Notes Page
+    ENSE 281 - Software Engineering Management - Lab 5
+    Author: Shivam
+    Date: February 2026
+
+    Description:
+    Main page for the Note-Vote app. Users can switch between
+    3 sample accounts using a Bootstrap dropdown, post new notes,
+    and upvote/downvote other users' notes. Built with jQuery
+    using the MVC pattern. All logic lives in js/script.js.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note-Vote</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Page Title -->
+        <h1 class="text-center my-4">Note-Vote</h1>
+
+        <!-- User Switching Dropdown -->
+        <!-- Replaces the old accordion; lets the tester switch between 3 sample users -->
+        <div class="d-flex justify-content-center mb-4">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="user-dropdown-btn"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Logged in as: Alice
+                </button>
+                <ul class="dropdown-menu" id="user-dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-user="alice">Alice</a></li>
+                    <li><a class="dropdown-item" href="#" data-user="bob">Bob</a></li>
+                    <li><a class="dropdown-item" href="#" data-user="charlie">Charlie</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Notes Box -->
+        <!-- Notes are dynamically rendered here by renderNotes() in script.js -->
+        <div class="card shadow" id="notes-box">
+            <div class="card-body" id="notes-container">
+                <!-- Dynamic notes go here -->
+
+                <!-- Add New Note (always visible at the bottom) -->
+                <div class="note-row" id="add-note-row">
+                    <input type="text" class="form-control" id="new-note-input" placeholder="Enter a new note here">
+                    <button class="btn btn-sm btn-outline-secondary" id="add-note-btn">Add</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jQuery (must come before our script) -->
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+
+    <!-- Main app logic -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
