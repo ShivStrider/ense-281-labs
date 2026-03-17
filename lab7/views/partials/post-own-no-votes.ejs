@@ -1,0 +1,8 @@
+<%# Post by current user, no votes yet %>
+<%# Shows the note text and a score of 0 %>
+<%# No vote buttons since you cannot vote on your own post %>
+
+<div class="note-row">
+    <input type="text" class="form-control" value="<%= post.text %>" readonly>
+    <span>0</span>
+</div>

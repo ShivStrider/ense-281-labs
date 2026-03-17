@@ -1,0 +1,8 @@
+<%# Post by current user, has votes %>
+<%# Shows the note text and the net score %>
+<%# No vote buttons since you cannot vote on your own post %>
+
+<div class="note-row">
+    <input type="text" class="form-control" value="<%= post.text %>" readonly>
+    <span><%= post.upvotes.length - post.downvotes.length %></span>
+</div>
