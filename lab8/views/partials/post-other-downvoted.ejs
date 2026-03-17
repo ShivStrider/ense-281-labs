@@ -1,0 +1,24 @@
+<%# Post by another user, current user HAS downvoted %>
+<%# Upvote button is outline - clicking switches from downvote to upvote %>
+<%# Downvote button is red (btn-danger) - clicking removes the downvote %>
+<%# Score IS visible %>
+
+<div class="note-row">
+    <input type="text" class="form-control" value="<%= post.text %>" readonly>
+
+    <!-- Switch from downvote to upvote -->
+    <form action="/remove-downvote-and-upvote" method="post">
+        <input type="hidden" name="login-email" value="<%= username %>">
+        <input type="hidden" name="post-id" value="<%= post._id %>">
+        <button type="submit" class="btn btn-sm btn-outline-secondary">&uarr;</button>
+    </form>
+
+    <!-- Remove downvote (toggle off) -->
+    <form action="/remove-downvote" method="post">
+        <input type="hidden" name="login-email" value="<%= username %>">
+        <input type="hidden" name="post-id" value="<%= post._id %>">
+        <button type="submit" class="btn btn-sm btn-danger">&darr;</button>
+    </form>
+
+    <span><%= post.upvotes.length - post.downvotes.length %></span>
+</div>

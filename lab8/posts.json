@@ -1,0 +1,44 @@
+[
+    {
+        "_id": 1,
+        "text": "First post by User1, no votes",
+        "creator": { "username": "a@a.a", "password": "aPassword" },
+        "upvotes": [],
+        "downvotes": []
+    },
+    {
+        "_id": 2,
+        "text": "Second post by User1, upvoted by User2",
+        "creator": { "username": "a@a.a", "password": "aPassword" },
+        "upvotes": [{ "username": "b@b.b", "password": "bPassword" }],
+        "downvotes": []
+    },
+    {
+        "_id": 3,
+        "text": "Third post by User1, downvoted by User2",
+        "creator": { "username": "a@a.a", "password": "aPassword" },
+        "upvotes": [],
+        "downvotes": [{ "username": "b@b.b", "password": "bPassword" }]
+    },
+    {
+        "_id": 4,
+        "text": "Fourth post by User2, no votes",
+        "creator": { "username": "b@b.b", "password": "bPassword" },
+        "upvotes": [],
+        "downvotes": []
+    },
+    {
+        "_id": 5,
+        "text": "Fifth post by User2, upvoted by User1",
+        "creator": { "username": "b@b.b", "password": "bPassword" },
+        "upvotes": [{ "username": "a@a.a", "password": "aPassword" }],
+        "downvotes": []
+    },
+    {
+        "_id": 6,
+        "text": "Sixth post by User2, downvoted by User1",
+        "creator": { "username": "b@b.b", "password": "bPassword" },
+        "upvotes": [],
+        "downvotes": [{ "username": "a@a.a", "password": "aPassword" }]
+    }
+]

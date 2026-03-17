@@ -1,0 +1,17 @@
+{
+    "name": "lab8",
+    "version": "1.0.0",
+    "description": "ENSE 281 Lab 8 - Note-Vote with MongoDB and Mongoose",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "seed": "node seed.js"
+    },
+    "author": "Shivam Soni",
+    "license": "ISC",
+    "dependencies": {
+        "ejs": "^3.1.9",
+        "express": "^4.18.2",
+        "mongoose": "^8.0.0"
+    }
+}

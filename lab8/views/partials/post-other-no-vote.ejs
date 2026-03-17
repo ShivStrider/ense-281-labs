@@ -1,0 +1,21 @@
+<%# Post by another user, current user has NOT voted %>
+<%# Shows upvote and downvote buttons (outline style) %>
+<%# Score is NOT visible until the user votes %>
+
+<div class="note-row">
+    <input type="text" class="form-control" value="<%= post.text %>" readonly>
+
+    <!-- Upvote button -->
+    <form action="/upvote" method="post">
+        <input type="hidden" name="login-email" value="<%= username %>">
+        <input type="hidden" name="post-id" value="<%= post._id %>">
+        <button type="submit" class="btn btn-sm btn-outline-secondary">&uarr;</button>
+    </form>
+
+    <!-- Downvote button -->
+    <form action="/downvote" method="post">
+        <input type="hidden" name="login-email" value="<%= username %>">
+        <input type="hidden" name="post-id" value="<%= post._id %>">
+        <button type="submit" class="btn btn-sm btn-outline-secondary">&darr;</button>
+    </form>
+</div>

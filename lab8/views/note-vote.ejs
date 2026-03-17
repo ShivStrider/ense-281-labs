@@ -1,0 +1,66 @@
+<%# Note-Vote Main Page %>
+<%# Renders the logged-in user's view of all posts %>
+<%# Uses partials to display each post based on the user's relationship to it %>
+<%# Variables passed in: username (string), posts (array) %>
+
+<%- include("layouts/header") -%>
+
+        <!-- Logout Bar -->
+        <div class="logout-bar d-flex justify-content-between align-items-center">
+            <span>Logged in as: <strong><%= username %></strong></span>
+            <a href="/logout" class="btn btn-sm btn-outline-secondary">Log out</a>
+        </div>
+
+        <!-- Notes Box -->
+        <div class="card shadow" id="notes-box">
+            <div class="card-body" id="notes-container">
+
+                <%# Loop through each post and pick the right partial %>
+                <% for (let i = 0; i < posts.length; i++) { %>
+                    <% let post = posts[i]; %>
+
+                    <%# Check if the logged-in user is the creator %>
+                    <% let isCreator = (post.creator.username === username); %>
+
+                    <%# Check if the logged-in user has upvoted or downvoted %>
+                    <% let hasUpvoted = post.upvotes.some((u) => u.username === username); %>
+                    <% let hasDownvoted = post.downvotes.some((u) => u.username === username); %>
+                    <% let hasVotes = (post.upvotes.length + post.downvotes.length) > 0; %>
+
+                    <% if (isCreator && !hasVotes) { %>
+                        <%# Own post, no votes %>
+                        <%- include("partials/post-own-no-votes", { post: post }) -%>
+
+                    <% } else if (isCreator && hasVotes) { %>
+                        <%# Own post, has votes %>
+                        <%- include("partials/post-own-with-votes", { post: post }) -%>
+
+                    <% } else if (!isCreator && hasUpvoted) { %>
+                        <%# Other user's post, current user upvoted %>
+                        <%- include("partials/post-other-upvoted", { post: post, username: username }) -%>
+
+                    <% } else if (!isCreator && hasDownvoted) { %>
+                        <%# Other user's post, current user downvoted %>
+                        <%- include("partials/post-other-downvoted", { post: post, username: username }) -%>
+
+                    <% } else { %>
+                        <%# Other user's post, no interaction yet %>
+                        <%- include("partials/post-other-no-vote", { post: post, username: username }) -%>
+
+                    <% } %>
+                <% } %>
+
+                <!-- Add New Note Section -->
+                <div class="note-row">
+                    <form action="/addpost" method="post" class="d-flex w-100 gap-2 align-items-center">
+                        <input type="hidden" name="login-email" value="<%= username %>">
+                        <input type="text" class="form-control" name="post-text"
+                            placeholder="Enter a new note here" required>
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Add</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+<%- include("layouts/footer") -%>
