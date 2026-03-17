@@ -1,0 +1,14 @@
+{
+    "name": "lab6",
+    "version": "1.0.0",
+    "description": "Note-Vote server for ENSE 281 Lab 6",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "author": "Shivam Soni",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^5.2.1"
+    }
+}

@@ -1,0 +1,14 @@
+[
+    {
+        "username": "a@a.a",
+        "password": "aPassword"
+    },
+    {
+        "username": "b@b.b",
+        "password": "bPassword"
+    },
+    {
+        "username": "c@c.c",
+        "password": "cPassword"
+    }
+]
