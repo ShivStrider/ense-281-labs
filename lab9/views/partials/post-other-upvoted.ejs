@@ -1,0 +1,22 @@
+<%# Post by another user, current user HAS upvoted %>
+<%# Upvote button is green (btn-success) - clicking removes the upvote %>
+<%# Downvote button is outline - clicking switches from upvote to downvote %>
+<%# Score IS visible %>
+
+<div class="note-row">
+    <input type="text" class="form-control" value="<%= post.text %>" readonly>
+
+    <!-- Remove upvote (toggle off) -->
+    <form action="/remove-upvote" method="post">
+        <input type="hidden" name="post-id" value="<%= post._id %>">
+        <button type="submit" class="btn btn-sm btn-success">&uarr;</button>
+    </form>
+
+    <!-- Switch from upvote to downvote -->
+    <form action="/remove-upvote-and-downvote" method="post">
+        <input type="hidden" name="post-id" value="<%= post._id %>">
+        <button type="submit" class="btn btn-sm btn-outline-secondary">&darr;</button>
+    </form>
+
+    <span><%= post.upvotes.length - post.downvotes.length %></span>
+</div>

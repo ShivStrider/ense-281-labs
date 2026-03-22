@@ -1,0 +1,86 @@
+/*  Base Styles  */
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/*  Typography  */
+
+h1 {
+    font-weight: 400;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+/*  Accordion Styling  */
+/* Used on the login/register page (index.ejs) */
+
+.accordion {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #4a90d9;
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+/*  Form Inputs  */
+
+.accordion-body .form-control {
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+/*  Notes Box  */
+
+#notes-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #e8f4f8;
+}
+
+/*  Note Row  */
+
+.note-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f0f5f7;
+    border-radius: 5px;
+}
+
+/* Let the text input fill the remaining space */
+.note-row .form-control {
+    flex: 1;
+}
+
+/* Fixed width for the score display so buttons don't shift */
+.note-row span {
+    min-width: 25px;
+    text-align: center;
+}
+
+/*  Inline form buttons (vote buttons sit next to each other) */
+
+.note-row form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+/*  Logout bar  */
+
+.logout-bar {
+    max-width: 600px;
+    margin: 0 auto 15px auto;
+}
